@@ -22,7 +22,7 @@ then
 		echo "                                     Repository Already Exists                                            "
 		echo ============================================================================================================
 	else
-		sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+		sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
 	fi
 
 	sleep 2s
@@ -36,7 +36,21 @@ then
 		echo "              Package Already Installed in $(cat /etc/redhat-release)                                     "
 		echo ============================================================================================================
 	else
-		sudo yum --enablerepo=epel install ansible
+		sudo yum --enablerepo=epel install ansible -y
+	fi
+	
+	sleep 2s
+	echo ============================================================================================================
+	echo "                                      Installing sshpass Package                                          "
+	echo ============================================================================================================
+	sleep 2s
+	if sudo rpm -qa | grep sshpass
+	then
+		echo ============================================================================================================
+		echo "                                        Package already exists                                            "
+		echo ============================================================================================================
+	else
+		sudo yum --enablerepo=epel install sshpass -y
 	fi
 # -----------------------------------------------------------------------------------------------------------------------
 else
@@ -68,7 +82,21 @@ else
 		echo "              Package Already Installed in $(cat /etc/redhat-release)                                     "
 		echo ============================================================================================================
 	else
-		sudo yum --enablerepo=epel install ansible
+		sudo yum --enablerepo=epel install ansible -y
+	fi
+
+	sleep 2s
+	echo ============================================================================================================
+	echo "                                      Installing sshpass Package                                          "
+	echo ============================================================================================================
+	sleep 2s
+	if sudo rpm -qa | grep sshpass
+	then
+		echo ============================================================================================================
+		echo "                                        Package already exists                                            "
+		echo ============================================================================================================
+	else
+		sudo yum --enablerepo=epel install sshpass -y
 	fi
 fi
 # -----------------------------------------------------------------------------------------------------------------------
