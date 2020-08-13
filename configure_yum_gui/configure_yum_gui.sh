@@ -25,8 +25,8 @@ RHEL7_KEY=$(sudo ls /etc/pki/rpm-gpg/ | grep RPM-GPG-KEY-redhat-release)
 # ----------------------------------------------------------------------------------------------------------------------------
 
 echo ============================================================================================================
-echo "Welcome to Automatic Yum Configuration Wizard. This Script works both with Red Hat Enterprise Linux Server 
-release 7.5 (Maipo) and Red Hat Enterprise Linux Release 8.0 (Ootpa)"
+echo "Welcome to Automatic Yum Configuration Wizard for GUI. This Script works both with Red Hat Enterprise Linux 
+Server release 7.5 (Maipo) and Red Hat Enterprise Linux Release 8.0 (Ootpa)"
 echo ============================================================================================================
 # -----------------------------------------------------------------------------------------------------------------------
 # Red Hat Enterprise Linux release 8.0 (Ootpa)
