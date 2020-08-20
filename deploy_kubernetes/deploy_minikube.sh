@@ -89,6 +89,7 @@ then
                 echo docker-ce-18.06.1.ce-3.el7.x86_64 Already Installed. Proceeding Further:
                 echo =========================================================================
         else
+		yum install https://buildlogs.centos.org/c7-extras.x86_64/container-selinux/20170307000722/2.9-4.el7.x86_64/container-selinux-2.9-4.el7.noarch.rpm -y
                 yum install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-18.06.1.ce-3.el7.x86_64.rpm -y
                 echo =========================================================================
                 echo           Installation Successfull. Proceeding Further:
