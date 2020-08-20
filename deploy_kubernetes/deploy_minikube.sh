@@ -239,10 +239,6 @@ sleep 2s
 docker version
 sleep 2s
 echo =========================================================================
-echo              Enjoy with the Containers. Happy Learning
-echo =========================================================================
-echo
-echo =========================================================================
 echo           Docker Deployed Successfully. Proceeding further:
 echo =========================================================================
 
@@ -397,7 +393,6 @@ then
 else
 	minikube start --driver=none
 fi
-
 
 
 #confirming ports
