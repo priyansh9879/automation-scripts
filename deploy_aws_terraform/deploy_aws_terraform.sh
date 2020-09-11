@@ -16,6 +16,20 @@ echo
 
 sleep 2s
 echo ----------------------------------------------------------------------------
+echo "                  Installing AdditionalPackages package                   "
+echo ----------------------------------------------------------------------------
+sleep 2s
+if sudo rpm -qa | grep unzip; sudo rpm -qa | grep wget
+then
+	echo ----------------------------------------------------------------------------
+	echo "                       Package Already Installed                          "
+	echo ----------------------------------------------------------------------------
+else
+	sudo yum install unzip wget -y
+fi
+
+sleep 2s
+echo ----------------------------------------------------------------------------
 echo "                    Downloading awscliv2.zip package                      "
 echo ----------------------------------------------------------------------------
 sleep 2s
@@ -73,32 +87,49 @@ aws --version
 
 sleep 2s
 echo ----------------------------------------------------------------------------
-echo "                     Downloading Terraform Packager                       "
+echo "                      Installing Terraform Package                        "
 echo ----------------------------------------------------------------------------
+
 sleep 2s
-if sudo ls | grep terraform_0.12.29_linux_amd64.zip
+echo '***************************************************'
+echo "               Installing yum-utils               " 
+echo '***************************************************'
+sleep 2s
+if sudo rpm -qa | grep dnf-utils
 then
-	sleep 2s
-	echo ----------------------------------------------------------------------------
-	echo "                      Package already downloaded                          "
-	echo ----------------------------------------------------------------------------
+	echo '***************************************************'
+	echo "               Already Installed                  "
+	echo '***************************************************'
 else
-	sudo wget https://releases.hashicorp.com/terraform/0.12.29/terraform_0.12.29_linux_amd64.zip
+	sudo yum install -y yum-utils
 fi
 
 sleep 2s
-echo ----------------------------------------------------------------------------
-echo "          Unzipping the Package at location [ /usr/local/bin ]            "
-echo ----------------------------------------------------------------------------
+echo '***************************************************'
+echo " Creating Yum REpository for HarshiCorp Terraform "
+echo '***************************************************'
 sleep 2s
-if sudo ls /usr/local/bin/ | grep -E '(^|\s)terraform($|\s)' 
+if sudo ls /etc/yum.repos.d/ | grep hashicorp.repo
 then
-	sleep 2s
-	echo ----------------------------------------------------------------------------
-	echo "                        Package Already Unzipped                          "
-	echo ----------------------------------------------------------------------------
+	echo '***************************************************'
+	echo "            Repository already exists             "
+	echo '***************************************************'
 else
-	sudo unzip terraform_0.12.29_linux_amd64.zip -d /usr/local/bin/
+	sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+fi
+
+sleep 2s
+echo '***************************************************'
+echo "                Installing Package                "
+echo '***************************************************'
+sleep 2s
+if sudo rpm -qa | grep terraform
+then
+	echo '***************************************************'
+	echo "            Package already Installed             "
+	echo '***************************************************'
+else
+	sudo yum install terraform -y
 fi
 
 sleep 2s
@@ -107,6 +138,9 @@ echo "                    Confirming the Terraform Version                      
 echo ----------------------------------------------------------------------------
 sleep 1s
 terraform -v
+
+sudo rm -rf awscliv2.zip
+sudo rm -rf aws
 
 sleep 2s
 echo ----------------------------------------------------------------------------
