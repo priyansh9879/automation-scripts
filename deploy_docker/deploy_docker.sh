@@ -89,7 +89,9 @@ else
 		echo =========================================================================
 		sudo yum clean all; sudo yum repolist
 	else
-		sudo wget -O /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo
+		echo '[docker-ce]' > /etc/yum.repos.d/docker-ce.repo
+		echo 'baseurl=https://download.docker.com/linux/centos/7/x86_64/stable/' >> /etc/yum.repos.d/docker-ce.repo
+		echo 'gpgcheck=0' >> /etc/yum.repos.d/docker-ce.repo
 		echo =========================================================================
 		echo            Repository Created. Checking Repository in yum:
 		echo =========================================================================	
